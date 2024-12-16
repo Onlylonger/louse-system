@@ -7,9 +7,9 @@ declare namespace Api {
   namespace Common {
     /** common params of paginating */
     interface PaginatingCommonParams {
-      /** current page number */
+      /** current current number */
       current: number;
-      /** page size */
+      /** current size */
       size: number;
       /** total count */
       total: number;
@@ -54,6 +54,13 @@ declare namespace Api {
    * backend api module: "auth"
    */
   namespace Auth {
+    interface LoginParams {
+      username: string;
+      password: string;
+      captcha_solution: string;
+      captcha_id: string;
+    }
+
     interface LoginToken {
       token: string;
       refreshToken: string;
@@ -64,6 +71,12 @@ declare namespace Api {
       userName: string;
       roles: string[];
       buttons: string[];
+    }
+
+    interface BackUserInfo {
+      role: string;
+      userID: number;
+      username: string;
     }
   }
 
@@ -221,5 +234,68 @@ declare namespace Api {
       pId: number;
       children?: MenuTree[];
     };
+  }
+
+  namespace DataCenter {
+    type SearchParams = CommonType.RecordNullable<
+      {
+        assignedNumber: string;
+        assignedDomain: string;
+        assignedCardId: string;
+        cardType: string;
+        frontType: string;
+        filerAddress: string;
+        filerCard: string;
+        filerCAPTCHA: string;
+        cardHeadFiltration: string;
+        infoFiltration: string;
+        assignedIP: string;
+        createTime: string;
+        updateTime: string;
+      } & Pick<Common.PaginatingCommonParams, 'current' | 'size'>
+    >;
+    type Item = Common.CommonRecord<{
+      [key: string]: any;
+    }>;
+
+    type ItemList = Common.PaginatingQueryRecord<Item>;
+  }
+
+  namespace Home {
+    type SearchParams = CommonType.RecordNullable<
+      {
+        frontType: string;
+        updateTime: string;
+      } & Pick<Common.PaginatingCommonParams, 'current' | 'size'>
+    >;
+    type Item = Common.CommonRecord<{
+      [key: string]: any;
+    }>;
+
+    type ItemList = Common.PaginatingQueryRecord<Item>;
+  }
+
+  namespace UserManagement {
+    type SearchParams = CommonType.RecordNullable<
+      {
+        updateTime: string;
+      } & Pick<Common.PaginatingCommonParams, 'current' | 'size'>
+    >;
+    type Item = Common.CommonRecord<{
+      [key: string]: any;
+    }>;
+
+    type ItemList = Common.PaginatingQueryRecord<Item>;
+  }
+
+  namespace FrontManagement {
+    type ConfigForm = {
+      [key: string]: any;
+    };
+    type Item = Common.CommonRecord<{
+      [key: string]: any;
+    }>;
+
+    type ItemList = Common.PaginatingQueryRecord<Item>;
   }
 }

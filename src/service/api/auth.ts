@@ -1,35 +1,21 @@
 import { request } from '../request';
 
-/**
- * Login
- *
- * @param userName User name
- * @param password Password
- */
-export function fetchLogin(userName: string, password: string) {
+export function fetchLogin(data: Api.Auth.LoginParams) {
   return request<Api.Auth.LoginToken>({
-    url: '/auth/login',
+    url: '/api/v1/users/login',
     method: 'post',
-    data: {
-      userName,
-      password
-    }
+    data
   });
 }
 
 /** Get user info */
 export function fetchGetUserInfo() {
-  return request<Api.Auth.UserInfo>({ url: '/auth/getUserInfo' });
+  return request<Api.Auth.BackUserInfo>({ url: '/api/v1/users/userInfo' });
 }
 
-/**
- * Refresh token
- *
- * @param refreshToken Refresh token
- */
 export function fetchRefreshToken(refreshToken: string) {
   return request<Api.Auth.LoginToken>({
-    url: '/auth/refreshToken',
+    url: '/api/v1/users/refresh_token',
     method: 'post',
     data: {
       refreshToken
@@ -45,4 +31,8 @@ export function fetchRefreshToken(refreshToken: string) {
  */
 export function fetchCustomBackendError(code: string, msg: string) {
   return request({ url: '/auth/error', params: { code, msg } });
+}
+
+export function fetchCaptchaInfo() {
+  return request({ url: '/api/captcha' });
 }

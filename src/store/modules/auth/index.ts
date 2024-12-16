@@ -60,10 +60,10 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
    * @param password Password
    * @param [redirect=true] Whether to redirect after login. Default is `true`
    */
-  async function login(userName: string, password: string, redirect = true) {
+  async function login(data: Api.Auth.LoginParams, redirect = true) {
     startLoading();
 
-    const { data: loginToken, error } = await fetchLogin(userName, password);
+    const { data: loginToken, error } = await fetchLogin(data);
 
     if (!error) {
       const pass = await loginByToken(loginToken);
@@ -91,8 +91,8 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
   async function loginByToken(loginToken: Api.Auth.LoginToken) {
     // 1. stored in the localStorage, the later requests need it in headers
     localStg.set('token', loginToken.token);
-    localStg.set('refreshToken', loginToken.refreshToken);
-
+    // localStg.set('refreshToken', loginToken.refreshToken);
+    localStg.set('refreshToken', loginToken.token);
     // 2. get user info
     const pass = await getUserInfo();
 
@@ -107,10 +107,14 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
 
   async function getUserInfo() {
     const { data: info, error } = await fetchGetUserInfo();
-
     if (!error) {
       // update store
-      Object.assign(userInfo, info);
+      Object.assign(userInfo, {
+        userId: info.userID,
+        userName: info.username,
+        roles: [info.role],
+        buttons: []
+      });
 
       return true;
     }
@@ -120,8 +124,7 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
 
   async function initUserInfo() {
     const hasToken = getToken();
-
-    if (hasToken) {
+    if (hasToken && !userInfo.userId) {
       const pass = await getUserInfo();
 
       if (!pass) {

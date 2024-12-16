@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import type { VNode } from 'vue';
+import type { RouteKey } from '@elegant-router/types';
 import { useAuthStore } from '@/store/modules/auth';
 import { useRouterPush } from '@/hooks/common/router';
 import { useSvgIcon } from '@/hooks/common/icon';
@@ -58,7 +59,7 @@ function handleDropdown(key: DropdownKey) {
     logout();
   } else {
     // If your other options are jumps from other routes, they will be directly supported here
-    routerPushByKey(key);
+    routerPushByKey(key as RouteKey);
   }
 }
 </script>

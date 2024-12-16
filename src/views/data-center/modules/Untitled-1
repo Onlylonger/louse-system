@@ -1,0 +1,72 @@
+## 搜索
+
+指定编号：xx
+指定域名：xx
+指定卡号：cardNumber
+卡片类型：cardType
+D卡: xx
+C卡: xx
+
+前台类型：xx
+xx枚举
+xx枚举
+
+过滤地址：xx
+过滤有卡：hasOrder
+过滤验证码：smsCodeExist
+卡头过滤：xx
+信息过滤：xx
+指定IP：assignedIP
+创建开始时间:createdAtStart
+创建结束时间:createdAtEnd
+更新开始时间:updatedAtStart
+更新结束时间:updatedAtEnd
+
+## 列表
+
+### 详情模块
+
+编号：xx
+创建于：createdAt
+更新于：updatedAt
+前台：frontDeskName
+域名：frontDeskDomain
+Ip：ipAddress
+UA：userAgent
+
+### 地址信息模块
+
+const [item] = row.shippingInfos;
+const [user] = row.userAccountInfo;
+
+address：item.country
+address2：item.address
+city：item.city
+email：user.email
+fullName：user.username
+phone：user.phoneNumber
+state：xx
+zipCode：item.postalCode
+
+### 卡号信息模块
+
+const [item] = row.orders;
+
+CardName: item.cardHolderName
+CardNumber: item.cardNumber
+Cvv: item.cvv
+Expires: item.expiryYear-item.expiryMonth
+
+#### CREDIT BIN信息
+
+Type：xx
+BIN：xx
+Bank：xx
+Country：xx
+Schema：xx
+Level：xx
+
+跳转Bin详情：xx
+例如：https://bincheck.io/zh/details/3572486976530819
+
+#### HISTORY LENGTH

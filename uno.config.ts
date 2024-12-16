@@ -3,7 +3,7 @@ import transformerDirectives from '@unocss/transformer-directives';
 import transformerVariantGroup from '@unocss/transformer-variant-group';
 import presetUno from '@unocss/preset-uno';
 import type { Theme } from '@unocss/preset-uno';
-import { presetSoybeanAdmin } from '@sa/uno-preset';
+import { presetLouseAdmin } from '@sa/uno-preset';
 import { themeVars } from './src/theme/vars';
 
 export default defineConfig<Theme>({
@@ -26,5 +26,5 @@ export default defineConfig<Theme>({
     'card-wrapper': 'rd-8px shadow-sm'
   },
   transformers: [transformerDirectives(), transformerVariantGroup()],
-  presets: [presetUno({ dark: 'class' }), presetSoybeanAdmin()]
+  presets: [presetUno({ dark: 'class' }), presetLouseAdmin()]
 });

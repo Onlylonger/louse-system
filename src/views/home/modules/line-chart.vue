@@ -19,7 +19,7 @@ const { domRef, updateOptions } = useEcharts(() => ({
     }
   },
   legend: {
-    data: [$t('page.home.downloadCount'), $t('page.home.registerCount')]
+    data: ['下载数量', '注册数量']
   },
   grid: {
     left: '3%',
@@ -38,7 +38,7 @@ const { domRef, updateOptions } = useEcharts(() => ({
   series: [
     {
       color: '#8e9dff',
-      name: $t('page.home.downloadCount'),
+      name: '下载数量',
       type: 'line',
       smooth: true,
       stack: 'Total',
@@ -68,7 +68,7 @@ const { domRef, updateOptions } = useEcharts(() => ({
     },
     {
       color: '#26deca',
-      name: $t('page.home.registerCount'),
+      name: '注册数量',
       type: 'line',
       smooth: true,
       stack: 'Total',
@@ -141,9 +141,7 @@ init();
 </script>
 
 <template>
-  <ElCard class="card-wrapper">
-    <div ref="domRef" class="h-360px overflow-hidden"></div>
-  </ElCard>
+  <div ref="domRef" class="h-360px overflow-hidden"></div>
 </template>
 
 <style scoped></style>

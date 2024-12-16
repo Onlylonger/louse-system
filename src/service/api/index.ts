@@ -1,3 +1,4 @@
 export * from './auth';
 export * from './route';
-export * from './system-manage';
+export * from './data-center';
+export * from './user-management';

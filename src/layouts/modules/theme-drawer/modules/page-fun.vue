@@ -130,7 +130,7 @@ const isWrapperScrollMode = computed(() => themeStore.layout.scrollMode === 'wra
         type="text"
         size="small"
         class="w-120px"
-        placeholder="SoybeanAdmin"
+        placeholder="LouseAdmin"
       />
     </SettingItem>
   </TransitionGroup>
